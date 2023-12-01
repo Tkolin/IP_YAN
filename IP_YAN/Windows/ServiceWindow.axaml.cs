@@ -49,8 +49,8 @@ public partial class ServiceWindow : Window
         if (SearchBox.Text.Length > 0)
             _ViewService = _ViewService.Where(c => 
                 c.Id.ToString().Contains(SearchBox.Text) ||
-                c.TypeOfServiceName.Contains(SearchBox.Text) ||
-                c.StaffFirstLastName.Contains(SearchBox.Text) || 
+                c.TypeOfServiceName.ToLower().Contains(SearchBox.Text.ToLower()) ||
+                c.StaffFirstLastName.ToLower().Contains(SearchBox.Text.ToLower()) || 
                 c.DateOfService.ToString().Contains(SearchBox.Text)
             ).ToList();
         

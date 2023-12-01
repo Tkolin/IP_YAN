@@ -46,9 +46,9 @@ public partial class VisitorWindow : Avalonia.Controls.Window
         if (SearchBox.Text.Length > 0)
             _ViewVisitor = _ViewVisitor.Where(c => 
                c.Id.ToString().Contains(SearchBox.Text) ||
-                c.FirstName.Contains(SearchBox.Text) ||
-                c.LastName.Contains(SearchBox.Text) || 
-                c.PhoneNumber.Contains(SearchBox.Text)
+                c.FirstName.ToLower().Contains(SearchBox.Text.ToLower()) ||
+                c.LastName.ToLower().Contains(SearchBox.Text.ToLower()) || 
+                c.PhoneNumber.ToLower().Contains(SearchBox.Text.ToLower())
             ).ToList();
         
         DataGrid.ItemsSource = _ViewVisitor;

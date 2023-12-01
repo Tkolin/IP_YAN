@@ -46,7 +46,7 @@ public partial class BookingWindow : Window
                 c.FinalPrice.ToString().Contains(SearchBox.Text) ||
                 c.DateOfEntry.ToString().Contains(SearchBox.Text) ||
                 c.DateOfDeparture.ToString().Contains(SearchBox.Text) ||
-                c.VisitorFirstLastName.Contains(SearchBox.Text)
+                c.VisitorFirstLastName.ToLower().Contains(SearchBox.Text.ToLower())
             ).ToList();
         if (CBoxVisitorIDFILTER.SelectedItem != null)
             _ViewBooking = _ViewBooking.Where(c => 

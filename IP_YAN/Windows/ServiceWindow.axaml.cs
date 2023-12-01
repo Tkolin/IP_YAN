@@ -142,8 +142,8 @@ public partial class ServiceWindow : Window
                 DPickerDateOfService.SelectedDate.Value.Date.Date,
                 Convert.ToInt32(NUpDownTimes.Value.Value),
                 Convert.ToInt32(NUpDownPrice.Value.Value),
-                (CBoxTypeOfServiceID.SelectedItem as Booking).Id,
-            (CBoxTypeOfServiceID.SelectedItem as Staff).Id
+                (CBoxBookingID.SelectedItem as Booking).Id,
+            (CBoxStaffID.SelectedItem as Staff).Id
             ));
         }
   
@@ -155,8 +155,8 @@ public partial class ServiceWindow : Window
                 DPickerDateOfService.SelectedDate.Value.Date.Date,
                 Convert.ToInt32(NUpDownTimes.Value.Value),
                 Convert.ToInt32(NUpDownPrice.Value.Value),
-                (CBoxTypeOfServiceID.SelectedItem as Booking).Id,
-                (CBoxTypeOfServiceID.SelectedItem as Staff).Id
+                (CBoxBookingID.SelectedItem as Booking).Id,
+                (CBoxStaffID.SelectedItem as Staff).Id
             ));
         }
 

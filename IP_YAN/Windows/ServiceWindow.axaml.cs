@@ -120,7 +120,7 @@ public partial class ServiceWindow : Window
 
         if (DataGrid.SelectedItem == null)
         {
-            DataBaseManager.AddSeeeeeeeeeeeeeeeeeervice(new Service(
+            DataBaseManager.AddService(new Service(
                 0,
                 (CBoxTypeOfServiceID.SelectedItem as TypeOfService).Id,
                 DPickerDateOfService.SelectedDate.Value.Date.Date,

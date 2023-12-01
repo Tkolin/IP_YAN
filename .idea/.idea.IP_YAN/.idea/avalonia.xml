@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="IP_YAN/App.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/MainWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/AddProcedureWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/BookingWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/ClienWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/LoginWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/MainWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/MenyWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/PacientDiseaseWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/ServiceWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

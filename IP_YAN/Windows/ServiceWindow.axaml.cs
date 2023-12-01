@@ -35,6 +35,7 @@ public partial class ServiceWindow : Window
         CBoxTypeOfServiceID.ItemsSource = _TypeOfServiceList;
         CBoxStaffID.ItemsSource = _StaffList;
         CBoxBookingID.ItemsSource = _BookingList;
+        CBoxBookingIDFILTER.ItemsSource = _BookingList;
     }
     public void DownloadDataGrid()
     {
@@ -53,6 +54,17 @@ public partial class ServiceWindow : Window
                 c.DateOfService.ToString().Contains(SearchBox.Text)
             ).ToList();
         
+        if(CBoxBookingIDFILTER.SelectedItem != null)
+            _ViewService = _ViewService.Where(c => 
+                c.BookingID == ((Booking)CBoxBookingIDFILTER.SelectedItem).Id).ToList();
+        
+        if(DPickerStartFILTER.SelectedDate != null)
+            _ViewService = _ViewService.Where(c => 
+                c.DateOfService >= DPickerStartFILTER.SelectedDate).ToList();
+        
+        if(DPickerEndFILTER.SelectedDate != null)
+            _ViewService = _ViewService.Where(c => 
+                c.DateOfService <= DPickerEndFILTER.SelectedDate).ToList();
         DataGrid.ItemsSource = _ViewService;
         
     }
@@ -87,6 +99,10 @@ public partial class ServiceWindow : Window
     private void ResetBtn_OnClick(object? sender, RoutedEventArgs e)
     {
         SearchBox.Text = "";
+        DPickerEndFILTER.SelectedDate = null;
+        DPickerStartFILTER.SelectedDate = null;
+        CBoxBookingIDFILTER.SelectedItem = null;
+
     }
 
     private void BtnDelet_OnClick(object? sender, RoutedEventArgs e)
@@ -94,7 +110,7 @@ public partial class ServiceWindow : Window
         if(DataGrid.SelectedItem == null)
             return;
         
-        DataBaseManager.DeleteVisitor((DataGrid.SelectedItem as Visitor).Id);
+        DataBaseManager.DeleteService((DataGrid.SelectedItem as Service).Id);
         
         DownloadDataGrid();
     }
@@ -153,6 +169,21 @@ public partial class ServiceWindow : Window
     }
 
     private void SearchBox_OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        UpdateDataGrid();
+    }
+
+    private void DPickerEndFILTER_OnSelectedDateChanged(object? sender, DatePickerSelectedValueChangedEventArgs e)
+    {
+          UpdateDataGrid();
+    }
+
+    private void DPickerStartFILTER_OnSelectedDateChanged(object? sender, DatePickerSelectedValueChangedEventArgs e)
+    {
+        UpdateDataGrid();
+    }
+
+    private void CBoxBookingIDFILTER_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         UpdateDataGrid();
     }

@@ -26,6 +26,8 @@ public partial class BookingWindow : Window
     
     private List<Room> _RoomList { get; set; }
     private List<Visitor> _VisitorList { get; set; }
+    private List<TypeOfService> _TypeOfServiceList { get; set; }
+    private List<Staff> _StaffList { get; set; }
 
     public void DownloadDataGrid()
     {
@@ -36,15 +38,19 @@ public partial class BookingWindow : Window
     {
         _ViewBooking = _DataBooking;
         
-        _ViewBooking = _ViewBooking.Where(c =>
-            c.Id.ToString().Contains(SearchBox.Text) ||
-            c.RoomID.ToString().Contains(SearchBox.Text) ||
-            c.VisitorID.ToString().Contains(SearchBox.Text) ||
-            c.FinalPrice.ToString().Contains(SearchBox.Text) ||
-            c.DateOfEntry.ToString().Contains(SearchBox.Text) ||
-            c.DateOfDeparture.ToString().Contains(SearchBox.Text) ||
-            c.VisitorFirstLastName.Contains(SearchBox.Text)
-        ).ToList();
+        if(SearchBox.Text.Length > 0)
+            _ViewBooking = _ViewBooking.Where(c =>
+                c.Id.ToString().Contains(SearchBox.Text) ||
+                c.RoomID.ToString().Contains(SearchBox.Text) ||
+                c.VisitorID.ToString().Contains(SearchBox.Text) ||
+                c.FinalPrice.ToString().Contains(SearchBox.Text) ||
+                c.DateOfEntry.ToString().Contains(SearchBox.Text) ||
+                c.DateOfDeparture.ToString().Contains(SearchBox.Text) ||
+                c.VisitorFirstLastName.Contains(SearchBox.Text)
+            ).ToList();
+        if (CBoxVisitorIDFILTER.SelectedItem != null)
+            _ViewBooking = _ViewBooking.Where(c => 
+                c.VisitorID == ((Visitor)CBoxVisitorIDFILTER.SelectedItem).Id).ToList();
         
         DataGrid.ItemsSource = _ViewBooking;
         
@@ -55,8 +61,17 @@ public partial class BookingWindow : Window
         _RoomList= DataBaseManager.GetRooms();
         _VisitorList = DataBaseManager.GetVisitors();
         
+        _TypeOfServiceList = DataBaseManager.GetTypeOfServices();
+        _StaffList = DataBaseManager.GetStaff();
+        
+        
         СBoxRoomID.ItemsSource = _RoomList;
         СBoxVisitorID.ItemsSource = _VisitorList;
+        
+        CBoxVisitorIDFILTER.ItemsSource = _VisitorList;
+
+        CBoxStaffID.ItemsSource = _StaffList;
+        CBoxTypeOfServiceID.ItemsSource = _TypeOfServiceList;
     }
     private void DataGrid_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
@@ -85,6 +100,7 @@ public partial class BookingWindow : Window
     private void ResetBtn_OnClick(object? sender, RoutedEventArgs e)
     {
         SearchBox.Text = "";
+        CBoxVisitorIDFILTER.SelectedItem = null;
     }
 
     private void BtnDelet_OnClick(object? sender, RoutedEventArgs e)
@@ -145,10 +161,55 @@ public partial class BookingWindow : Window
 
     private void BtnCreateService_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (DataGrid.SelectedItem  == null)
+        {
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Бронирование не выбрано", ButtonEnum.Ok).ShowAsync();
+            return;
+        }
+
+        if (CBoxTypeOfServiceID.SelectedItem == null || 
+        DPickerDateOfService.SelectedDate == null ||
+        NUpDownTimes.Value < 0 ||
+        NUpDownPrice.Value  < 0 ||
+        CBoxStaffID.SelectedItem == null)
+        {
+            MessageBoxManager.GetMessageBoxStandard("Ошибка", "Данные не заполнены", ButtonEnum.Ok).ShowAsync();
+            return;
+        }
+
+        try
+        {
+            DataBaseManager.AddService(new Service(
+                0,
+                (CBoxTypeOfServiceID.SelectedItem as TypeOfService).Id,
+                DPickerDateOfService.SelectedDate.Value.Date.Date,
+                Convert.ToInt32(NUpDownTimes.Value.Value),
+                Convert.ToInt32(NUpDownPrice.Value.Value),
+                (DataGrid.SelectedItem as Booking).Id,
+                (CBoxTypeOfServiceID.SelectedItem as TypeOfService).Id
+            ));
+
+            CBoxTypeOfServiceID.SelectedItem = null;
+            DPickerDateOfService.SelectedDate = null;
+            NUpDownTimes.Value = 0;
+            NUpDownPrice.Value = 0;
+            CBoxStaffID.SelectedItem = null;
+            DataGrid.SelectedItem = null;
+
+            MessageBoxManager.GetMessageBoxStandard("Успех!", "Данные добавлены", ButtonEnum.Ok).ShowAsync();
+        }
+        catch
+        {
+            MessageBoxManager.GetMessageBoxStandard("Упс", "Что-то пошло не так", ButtonEnum.Ok).ShowAsync();
+        }
     }
 
     private void SearchBox_OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        UpdateDataGrid();
+    }
+
+    private void CBoxVisitorIDFILTER_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         UpdateDataGrid();
     }

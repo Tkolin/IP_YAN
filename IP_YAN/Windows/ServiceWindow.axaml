@@ -33,7 +33,7 @@
                 <TextBlock Text="Поиск:" Margin="0,0,0,10"  HorizontalAlignment="Center"/>
              
                 <TextBox x:Name="SearchBox" 
-                         Margin="5"
+                         Margin="5" Text="" TextChanged="SearchBox_OnTextChanged"
                          Width="250"/>
                 <Button x:Name="ResetBtn"
                         Click="ResetBtn_OnClick"
@@ -57,8 +57,13 @@
                 <TextBlock Text="Редактирование" Margin="0,0,0,10" HorizontalAlignment="Center"/>
 
                 <TextBlock Text="ID типа услуги:" IsEnabled="False"/>
-                <ComboBox x:Name="CBoxTypeOfServiceID" Width="250"/>
-
+                <ComboBox x:Name="CBoxTypeOfServiceID" Width="250" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="dateBase:TypeOfService">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <TextBlock Text="Дата услуги:" IsEnabled="False"/>
                 <DatePicker x:Name="DPickerDateOfService" Width="250"/>
 
@@ -69,12 +74,32 @@
                 <NumericUpDown x:Name="NUpDownPrice" Width="250"/>
 
                 <TextBlock Text="ID бронирования:" IsEnabled="False"/>
-                <ComboBox x:Name="CBoxBookingID" Width="250"/>
-
+                <ComboBox x:Name="CBoxBookingID" Width="250" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="dateBase:Booking">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Номер: "/>
+                                <TextBlock Text="{Binding Id}"/>
+                                <TextBlock Text=" Дата выселения: "/>
+                                <TextBlock Text="{Binding DateOfEntry}"/>
+                            </StackPanel>
+                         
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <TextBlock Text="ID сотрудника:" IsEnabled="False"/>
-                <ComboBox x:Name="CBoxStaffID" Width="250"/>
-                
-                
+                <ComboBox x:Name="CBoxStaffID" Width="250" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="dateBase:Staff">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding FirstName}"/>
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding LastName}"/>
+                            </StackPanel>
+                             
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button x:Name="BtnSavet" HorizontalAlignment="Center" Margin="5"
                         Click="BtnSavet_OnClick"
                         Content="Сохранить" />

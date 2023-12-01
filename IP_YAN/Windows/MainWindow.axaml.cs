@@ -1,7 +1,8 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using IP_YAN.DateBase;
 
-namespace IP_YAN;
+namespace IP_YAN.Windows;
 
 public partial class MainWindow : Window
 {
@@ -11,22 +12,25 @@ public partial class MainWindow : Window
     }
     private void BtnClient_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        VisitorWindow sw = new VisitorWindow();
+        sw.ShowDialog(this);
     }
 
     private void BtnBooking_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        BookingWindow sw = new BookingWindow();
+        sw.ShowDialog(this);
     }
 
     private void BtnService_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        ServiceWindow sw = new ServiceWindow();
+        sw.ShowDialog(this);
     }
 
     private void BtnBack_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        this.Close();
     }
     
 }

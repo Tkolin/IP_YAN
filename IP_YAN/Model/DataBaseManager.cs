@@ -178,10 +178,10 @@ public class DataBaseManager
         }
     }
 
-    public static void UpdateEntity<T>(T entity, string tableName, Dictionary<string, object> parameters, string idColumnName)
+    public static void UpdateEntity<T>(T entity, string tableName, Dictionary<string, object> parameters, string idRow)
     {
         string setClause = string.Join(", ", parameters.Keys.Select(key => $"{key} = @{key}"));
-        string query = $"UPDATE {tableName} SET {setClause} WHERE {idColumnName} = @{idColumnName}";
+        string query = $"UPDATE {tableName} SET {setClause} WHERE ID = {idRow}";
 
         using (var connection = new MySqlConnection(ConnectionString.ConnectionString))
         {
@@ -192,7 +192,6 @@ public class DataBaseManager
                 {
                     command.Parameters.AddWithValue("@" + parameter.Key, parameter.Value);
                 }
-                command.Parameters.AddWithValue("@" + idColumnName, parameters[idColumnName]);
 
                 command.ExecuteNonQuery();
             }
@@ -230,6 +229,7 @@ public class DataBaseManager
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>
         {
+            { "ID", roomType.Id },
             { "name", roomType.Name }
         };
 
@@ -316,7 +316,7 @@ public class DataBaseManager
             { "date_of_birth", visitor.DateOfBirth }
         };
 
-        UpdateEntity(visitor, "visitor", parameters, "ID");
+        UpdateEntity(visitor, "visitor", parameters, visitor.Id.ToString());
     }
 
     public static void DeleteVisitor(int visitorId)
@@ -327,6 +327,7 @@ public class DataBaseManager
     {
         Dictionary<string, object> parameters = new Dictionary<string, object>
         {
+            { "idColumnName", staff.Id },
             { "first_name", staff.FirstName },
             { "last_name", staff.LastName },
             { "phone_number", staff.PhoneNumber },
@@ -380,7 +381,7 @@ public class DataBaseManager
             { "final_price", booking.FinalPrice }
         };
 
-        UpdateEntity(booking, "booking", parameters, "ID");
+        UpdateEntity(booking, "booking", parameters, booking.Id.ToString());
     }
 
     public static void DeleteBooking(int bookingId)
@@ -414,7 +415,7 @@ public class DataBaseManager
             { "staff_ID", service.StaffID }
         };
 
-        UpdateEntity(service, "service", parameters, "ID");
+        UpdateEntity(service, "service", parameters, service.Id.ToString() );
     }
 
     public static void DeleteService(int serviceId)

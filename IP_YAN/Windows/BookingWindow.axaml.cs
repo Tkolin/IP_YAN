@@ -70,12 +70,12 @@ public partial class BookingWindow : Window
         }
         else
         {
-            var selectedBooking = (Booking)DataGrid.SelectedItem;
+            Booking selectedBooking = DataGrid.SelectedItem as Booking;
 
             СBoxRoomID.SelectedItem = _RoomList.
-                Where(c => c.Id == (СBoxVisitorID.SelectedItem as Room).Id).FirstOrDefault();
+                Where(c => c.Id == selectedBooking.RoomID).FirstOrDefault();
             СBoxVisitorID.SelectedItem = _VisitorList.
-                Where(c => c.Id == (СBoxVisitorID.SelectedItem as Visitor).Id).FirstOrDefault();
+                Where(c => c.Id == selectedBooking.VisitorID).FirstOrDefault();
             DPickerDateOfEntry.SelectedDate = selectedBooking.DateOfEntry;
             DPickerDateOfDeparture.SelectedDate = selectedBooking.DateOfDeparture;
             NUpDownCost.Value = selectedBooking.FinalPrice;
@@ -146,5 +146,10 @@ public partial class BookingWindow : Window
     private void BtnCreateService_OnClick(object? sender, RoutedEventArgs e)
     {
         throw new NotImplementedException();
+    }
+
+    private void SearchBox_OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        UpdateDataGrid();
     }
 }

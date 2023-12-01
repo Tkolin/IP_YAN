@@ -35,7 +35,7 @@
                 <TextBlock Text="Поиск:" Margin="0,0,0,10"  HorizontalAlignment="Center"/>
              
                 <TextBox x:Name="SearchBox" 
-                         Margin="5"
+                         Margin="5" Text="" TextChanged="SearchBox_OnTextChanged"
                          Width="250"/>
                 <Button x:Name="ResetBtn"
                         Click="ResetBtn_OnClick"
@@ -69,7 +69,14 @@
                     <TextBlock Text="ID посетителя:"/>
                     <ComboBox x:Name="СBoxVisitorID" Width="250">
                         <ComboBox.ItemTemplate>
-                       
+                            <DataTemplate x:DataType="dateBase:Visitor">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding LastName}"/>
+                                </StackPanel>
+                             
+                            </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <TextBlock Text="Конечная цена:"/>

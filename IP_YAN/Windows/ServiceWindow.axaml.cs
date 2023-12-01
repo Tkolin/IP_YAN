@@ -14,8 +14,8 @@ namespace IP_YAN.Windows;
 
 public partial class ServiceWindow : Window
 {
-    private List<Visitor> _DataService { get; set; }
-    private List<Visitor> _ViewService { get; set; }
+    private List<Service> _DataService { get; set; }
+    private List<Service> _ViewService { get; set; }
     private List<TypeOfService> _TypeOfServiceList { get; set; }
     private List<Staff> _StaffList { get; set; }
     private List<Booking> _BookingList { get; set; }
@@ -38,7 +38,7 @@ public partial class ServiceWindow : Window
     }
     public void DownloadDataGrid()
     {
-        _DataService = DataBaseManager.GetVisitors();
+        _DataService = DataBaseManager.GetServices();
         UpdateDataGrid();
     }
     private void UpdateDataGrid()
@@ -48,9 +48,9 @@ public partial class ServiceWindow : Window
         if (SearchBox.Text.Length > 0)
             _ViewService = _ViewService.Where(c => 
                 c.Id.ToString().Contains(SearchBox.Text) ||
-                c.FirstName.ToString().Contains(SearchBox.Text) ||
-                c.LastName.ToString().Contains(SearchBox.Text) || 
-                c.PhoneNumber.ToString().Contains(SearchBox.Text)
+                c.TypeOfServiceName.Contains(SearchBox.Text) ||
+                c.StaffFirstLastName.Contains(SearchBox.Text) || 
+                c.DateOfService.ToString().Contains(SearchBox.Text)
             ).ToList();
         
         DataGrid.ItemsSource = _ViewService;
@@ -74,8 +74,8 @@ public partial class ServiceWindow : Window
             CBoxTypeOfServiceID.SelectedItem = _TypeOfServiceList.
                 Where(c=>c.Id == service.TypeOfServiceID).FirstOrDefault();
             DPickerDateOfService.SelectedDate = DateTime.Now;
-            NUpDownTimes.Value = 0;
-            NUpDownPrice.Value = 0;
+            NUpDownTimes.Value = service.Time;
+            NUpDownPrice.Value = service.Price;
             CBoxBookingID.SelectedItem = _BookingList.
                 Where(c=>c.Id == service.BookingID).FirstOrDefault();
             CBoxStaffID.SelectedItem = _StaffList.
@@ -120,7 +120,7 @@ public partial class ServiceWindow : Window
 
         if (DataGrid.SelectedItem == null)
         {
-            DataBaseManager.AddService(new Service(
+            DataBaseManager.AddSeeeeeeeeeeeeeeeeeervice(new Service(
                 0,
                 (CBoxTypeOfServiceID.SelectedItem as TypeOfService).Id,
                 DPickerDateOfService.SelectedDate.Value.Date.Date,
@@ -150,5 +150,10 @@ public partial class ServiceWindow : Window
     private void BtnCreateBooking_OnClick(object? sender, RoutedEventArgs e)
     {
         throw new NotImplementedException();
+    }
+
+    private void SearchBox_OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        UpdateDataGrid();
     }
 }

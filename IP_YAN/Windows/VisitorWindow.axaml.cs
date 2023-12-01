@@ -12,13 +12,13 @@ using MsBox.Avalonia.Enums;
 
 namespace IP_YAN.Windows;
 
-public partial class ProcedureWindow : Avalonia.Controls.Window
+public partial class VisitorWindow : Avalonia.Controls.Window
 {
     private List<Visitor> _DataVisitor { get; set; }
     private List<Visitor> _ViewVisitor { get; set; }
     
 
-    public ProcedureWindow()
+    public VisitorWindow()
     {
         InitializeComponent();
         DownloadDataGrid();
@@ -34,10 +34,10 @@ public partial class ProcedureWindow : Avalonia.Controls.Window
         
         if (SearchBox.Text.Length > 0)
             _ViewVisitor = _ViewVisitor.Where(c => 
-                c.Id.ToString().Contains(SearchBox.Text) ||
-                c.FirstName.ToString().Contains(SearchBox.Text) ||
-                c.LastName.ToString().Contains(SearchBox.Text) || 
-                c.PhoneNumber.ToString().Contains(SearchBox.Text)
+               c.Id.ToString().Contains(SearchBox.Text) ||
+                c.FirstName.Contains(SearchBox.Text) ||
+                c.LastName.Contains(SearchBox.Text) || 
+                c.PhoneNumber.Contains(SearchBox.Text)
             ).ToList();
         
         DataGrid.ItemsSource = _ViewVisitor;
@@ -124,5 +124,10 @@ public partial class ProcedureWindow : Avalonia.Controls.Window
     private void BtnCreateBooking_OnClick(object? sender, RoutedEventArgs e)
     {
         throw new NotImplementedException();
+    }
+
+    private void SearchBox_OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        UpdateDataGrid();
     }
 }

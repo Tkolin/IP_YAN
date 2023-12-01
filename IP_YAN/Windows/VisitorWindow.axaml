@@ -5,7 +5,7 @@
         mc:Ignorable="d" 
         xmlns:dateBase="clr-namespace:IP_YAN.DateBase"
         MinHeight="600" MinWidth = "1200"  MaxHeight="600" MaxWidth = "1200" 
-        x:Class="IP_YAN.Windows.ProcedureWindow"
+        x:Class="IP_YAN.Windows.VisitorWindow"
         Title="График процедур">
  <Grid ShowGridLines="True" ColumnDefinitions="1*,0.6*">
 
@@ -32,7 +32,7 @@
                 <TextBlock Text="Поиск:" Margin="0,0,0,10"  HorizontalAlignment="Center"/>
              
                 <TextBox x:Name="SearchBox" 
-                         Margin="5"
+                         Margin="5" Text="" TextChanged="SearchBox_OnTextChanged"
                          Width="250"/>
                 <Button x:Name="ResetBtn"
                         Click="ResetBtn_OnClick"

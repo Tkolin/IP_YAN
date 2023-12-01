@@ -6,7 +6,7 @@
         x:Class="IP_YAN.Windows.BookingWindow"
         xmlns:dateBase="clr-namespace:IP_YAN.DateBase"
         MinHeight="600" MinWidth = "1500"  MaxHeight="600" MaxWidth = "1500" 
-        Title="График процедур">
+        Title="Бронирование">
  <Grid ShowGridLines="True" ColumnDefinitions="1*,1*">
 
          <DataGrid Grid.Column="0"  x:Name="DataGrid"

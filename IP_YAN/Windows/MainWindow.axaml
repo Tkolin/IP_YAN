@@ -5,7 +5,7 @@
         mc:Ignorable="d" 
         MinHeight="300" MinWidth = "300"  MaxHeight="300" MaxWidth = "300" 
         x:Class="IP_YAN.Windows.MainWindow"
-        Title="IP_YAN">
+        Title="Меню">
   <StackPanel>
         <TextBlock 
             Margin="20"  HorizontalAlignment="Center"

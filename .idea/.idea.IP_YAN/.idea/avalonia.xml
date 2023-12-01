@@ -13,6 +13,8 @@
         <entry key="IP_YAN/Windows/MenyWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
         <entry key="IP_YAN/Windows/PacientDiseaseWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
         <entry key="IP_YAN/Windows/ServiceWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/VisitorWindow.axaml" value="IP_YAN/IP_YAN.csproj" />
+        <entry key="IP_YAN/Windows/d.axaml" value="IP_YAN/IP_YAN.csproj" />
       </map>
     </option>
   </component>

@@ -383,7 +383,7 @@ public class DataBaseManager
         UpdateEntity(booking, "booking", parameters, "ID");
     }
 
-    public static void DeleteBooking(Booking? bookingId)
+    public static void DeleteBooking(int bookingId)
     {
         DeleteEntity("booking", "ID", bookingId);
     }

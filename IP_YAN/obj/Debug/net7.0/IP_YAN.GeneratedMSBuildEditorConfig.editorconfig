@@ -21,14 +21,11 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/BookingWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/ClienWindow.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
 [C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/MenyWindow.axaml]
+[C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/ServiceWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/ServiceWindow.axaml]
+[C:/Users/Grigoriy/YandexDisk/\!РАБОТА 2023/1 Предмет/Прога/IP_YAN/IP_YAN/Windows/VisitorWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

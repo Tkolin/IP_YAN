@@ -31,4 +31,17 @@ public class Service
         TypeOfServiceName = typeOfServiceName  ;
         StaffFirstLastName = staffFirstLastName  ;
     }
+    public Service(
+        int id, int typeOfServiceID, DateTime dateOfService,
+        int time, decimal price, int bookingID, 
+        int staffID)
+    {  
+        Id = id;
+        TypeOfServiceID = typeOfServiceID  ;
+        DateOfService = dateOfService  ;
+        Time = time  ;
+        Price = price  ;
+        BookingID = bookingID  ;
+        StaffID = staffID  ;
+    }
 }

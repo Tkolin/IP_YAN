@@ -13,19 +13,20 @@ using MsBox.Avalonia.Enums;
 
 namespace IP_YAN.Windows;
 
-public partial class BookingWindow 
+public partial class BookingWindow : Window
 {
-    private List<Booking> _DataBooking { get; set; }
-    private List<Booking> _ViewBooking { get; set; }
-    
-    private List<Room> _RoomList { get; set; }
-    private List<Visitor> _VisitorList { get; set; }
     public BookingWindow()
     {
         InitializeComponent();
         DownloadDataGrid();
         UpdateComboBox();
     }
+        private List<Booking> _DataBooking { get; set; }
+    private List<Booking> _ViewBooking { get; set; }
+    
+    private List<Room> _RoomList { get; set; }
+    private List<Visitor> _VisitorList { get; set; }
+
     public void DownloadDataGrid()
     {
         _DataBooking = DataBaseManager.GetBookings();
@@ -91,7 +92,7 @@ public partial class BookingWindow
         if(DataGrid.SelectedItem == null)
             return;
         
-        DataBaseManager.DeleteBooking(DataGrid.SelectedItem as Booking);
+        DataBaseManager.DeleteBooking((DataGrid.SelectedItem as Booking).Id);
         
         DownloadDataGrid();
     }
@@ -140,5 +141,10 @@ public partial class BookingWindow
 
         DownloadDataGrid();
 
+    }
+
+    private void BtnCreateService_OnClick(object? sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }

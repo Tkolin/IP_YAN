@@ -5,5 +5,25 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="IP_YAN.MainWindow"
         Title="IP_YAN">
-    Welcome to Avalonia!
+  <StackPanel>
+        <TextBlock 
+            Margin="20"  HorizontalAlignment="Center"
+            Text="МЕНЮ" FontSize="30" VerticalAlignment="Center"/>
+        <Button  Margin="4" Width="300"  HorizontalAlignment="Center" 
+                 HorizontalContentAlignment="Center"
+                 x:Name="BtnClient" Content="Список посетителей" 
+                 Click="BtnClient_OnClick"/>
+        <Button Margin="4" Width="300"  HorizontalAlignment="Center" 
+                HorizontalContentAlignment="Center"
+                x:Name="BtnBooking" Content="Бронирование" 
+                Click="BtnBooking_OnClick"/>
+        <Button  Margin="4" Width="300"  HorizontalAlignment="Center" 
+                 HorizontalContentAlignment="Center"
+                 x:Name="BtnService" Content="Обслуживание" 
+                 Click="BtnService_OnClick"/>
+        <Button  Margin="4" Width="100"  HorizontalAlignment="Center" 
+                 HorizontalContentAlignment="Center"
+                 x:Name="BtnBack" Content="Назад" 
+                 Click="BtnBack_OnClick"/>
+    </StackPanel>
 </Window>

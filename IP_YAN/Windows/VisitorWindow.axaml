@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
-        xmlns:models="clr-namespace:AN_UP.DateBase"
+        xmlns:dateBase="clr-namespace:IP_YAN.DateBase"
         MinHeight="600" MinWidth = "1200"  MaxHeight="600" MaxWidth = "1200" 
         x:Class="IP_YAN.Windows.ProcedureWindow"
         Title="График процедур">
@@ -15,16 +15,12 @@
                            GridLinesVisibility="All"
                            BorderThickness="2"
                            Margin="0,20" SelectionChanged="DataGrid_OnSelectionChanged"
-                           x:DataType="models:Procedure">
+                           x:DataType="dateBase:Visitor">
                  <DataGrid.Columns>
-                     <DataGridTextColumn Width="*" Header="ID врача" Binding="{Binding DoctorID}"/>
-                     <DataGridTextColumn Width="*" Header="ID записи о заболевании" Binding="{Binding DiseaseRecordID}"/>
-                     <DataGridTextColumn Width="*" Header="Описание" Binding="{Binding Description}"/>
-                     <DataGridTextColumn Width="*" Header="Время" Binding="{Binding DateStart}"/>
-                     <DataGridTextColumn Width="*" Header="Продолжительность" Binding="{Binding Duration}"/>
-                     <DataGridTextColumn Width="*" Header="Стоимость" Binding="{Binding Cost}"/>
-                     <DataGridTextColumn Width="*" Header="ID статуса" Binding="{Binding StatusID}"/>
-
+                     <DataGridTextColumn Width="*" Header="Имя" Binding="{Binding FirstName}"/>
+                     <DataGridTextColumn Width="*" Header="Фамилия" Binding="{Binding LastName}"/>
+                     <DataGridTextColumn Width="*" Header="Номер телефона" Binding="{Binding PhoneNumber}"/>
+                     <DataGridTextColumn Width="*" Header="Дата рождения" Binding="{Binding DateOfBirth}"/>
                  </DataGrid.Columns>
              </DataGrid>
         
@@ -60,34 +56,17 @@
                 <TextBlock Text="Редактирование" Margin="0,0,0,10" HorizontalAlignment="Center"/>
 
           
+                <TextBlock Text="Имя:" IsEnabled="False"/>
+                <TextBox x:Name="TBoxFirstName" Width="250"/>
+                <TextBlock Text="Фамилия:" IsEnabled="False"/>
+                <TextBox x:Name="TBoxLastName" Width="250"/>
+                <TextBlock Text="Номер телефона:" IsEnabled="False"/>
+                <TextBox x:Name="TBoxPhoneNumber" Width="250"/>
 
-                <TextBlock Text="Врач:"/>
-                <ComboBox x:Name="CBoxAttendingDoctor" Width="250">
-                    <ComboBox.ItemTemplate>
-                       
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <TextBlock Text="Пациент:"/>
-                <ComboBox x:Name="CBoxDisiaseRecord" Width="250">
-                    <ComboBox.ItemTemplate>
-                       
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <TextBlock Text="Описание:" />
-                <TextBox x:Name="TBoxDescription" Width="250" Height="50" MaxLines="10"/>
-                
-                <TextBlock Text="Дата проведения:" IsEnabled="False" />
-                <DatePicker x:Name="DPickerDateStart" Width="250" />
-                <TextBlock Text="Продолжительность:" IsEnabled="False"/>
-                <NumericUpDown x:Name="NUpDownDuration" Width="250"/>
-                <TextBlock Text="Стоимость:" IsEnabled="False"/>
-                <NumericUpDown x:Name="NUpDownCost" Width="250"/>
-                <TextBlock Text="Статус:" IsEnabled="False"/>
-                <ComboBox x:Name="CBoxStatus" Width="250">
-                    <ComboBox.ItemTemplate>
-                       
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                <TextBlock Text="Дата рождения:" IsEnabled="False" />
+                <DatePicker x:Name="DPickerDateBirth" Width="250" />
+
+
                 
                 
                 <Button x:Name="BtnSavet" HorizontalAlignment="Center" Margin="5"
@@ -97,9 +76,16 @@
             <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment = "Center"  Margin="5">
                 <TextBlock Text="Распределение" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                 
-                <Button x:Name="BtnCreateProcedure" HorizontalAlignment="Center" Margin="5"
-                        Click="BtnCreateProcedure_OnClick"
-                        Content="Завершить процедуру" />
+                <TextBlock Text="Комната:" IsEnabled="False"/>
+                <ComboBox x:Name="CBoxRoom" Width="250"/>
+                <TextBlock Text="Дата заселения:" IsEnabled="False"/>
+                <DatePicker x:Name="DPickerDateStart" Width="250"/>
+                <TextBlock Text="Срок заселения:" IsEnabled="False"/>
+                <NumericUpDown x:Name="NUpDownTime" Width="250"/>
+                
+                <Button x:Name="BtnCreateBooking" HorizontalAlignment="Center" Margin="5"
+                        Click="BtnCreateBooking_OnClick"
+                        Content="Создать бронь" />
             </StackPanel>
         </Grid>
     </Grid>
